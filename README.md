@@ -1,2 +1,2 @@
 # pi-playground
-My plyground for Pi OS development
+My playground for Pi OS development
