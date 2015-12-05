@@ -1,0 +1,41 @@
+#!/bin/bash
+
+warnal_bg_terminal ()
+{
+	if [ -f $HOME/.config/xfce4/terminal/terminalrc ]; then
+		sed -i "s~\(BackgroundImageFile=\).*~\1$1~g" $HOME/.config/xfce4/terminal/terminalrc
+	else
+		mkdir -p $HOME/.config/xfce4/terminal/
+		cp /etc/xdg/xdg-xubuntu/xfce4/terminal/terminalrc $HOME/.config/xfce4/terminal/terminalrc
+		sed -i "s~\(BackgroundImageFile=\).*~\1$1~g" $HOME/.config/xfce4/terminal/terminalrc
+	fi
+}
+
+pi-grey ()
+{
+	xfconf-query -c xsettings -p /Net/ThemeName -s "Pi-Grey"
+	xfconf-query -c xfwm4 -p /general/theme -s "Pi-Grey"
+	xfconf-query -c xfce4-panel -p /panels/panel-0/background-image -s "/usr/share/pixmaps/panel.png"
+	warnal_bg_terminal "/usr/share/pixmaps/panel.png"
+}
+
+pi-green ()
+{
+	xfconf-query -c xsettings -p /Net/ThemeName -s "Pi-Green"
+	xfconf-query -c xfwm4 -p /general/theme -s "Pi-Green"
+	xfconf-query -c xfce4-panel -p /panels/panel-0/background-image -s "/usr/share/pixmaps/panel-bg.png"
+	warnal_bg_terminal "/usr/share/pixmaps/panel-bg.png"
+}
+
+if [ $# -ne 1 ]; then
+	echo "Pilihan tidak tersedia"
+	exit 1;
+fi
+if [[ $1 == "grey" ]]; then
+	pi-grey
+	exit 0
+elif [[ $1 == "green" ]]; then
+	pi-green
+	exit 0
+fi
+		
