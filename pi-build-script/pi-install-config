@@ -1,8 +1,11 @@
 #!/bin/bash
 
-lokasi_config="$HOME/pi-playground"
+lokasi_config="/tmp/pi-playground"
+webkit_theme="pi-material"
 
-# enter config location
+# download and enter config location
+cd /tmp
+git clone https://github.com/alunux/pi-playground.git
 cd $lokasi_config
 
 # install icons
@@ -20,7 +23,8 @@ chmod 664 -R /usr/share/themes/Pi-Grey
 # install lightdm themes
 cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
 chmod 755 -R /usr/share/lightdm-webkit/themes/pi-lightdm-theme
-echo greeter-session=
+sed -i "s~\(webkit-theme=\).*~\1$webkit_theme~g" /etc/lightdm/lightdm-webkit-greeter.conf
+echo greeter-session=lightdm-webkit-greeter >> /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
 
 # install logos
 cp pi-logos/logo-2.png /usr/share/pixmaps
