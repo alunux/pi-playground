@@ -3,20 +3,24 @@
 lokasi_config="/tmp/pi-playground"
 webkit_theme="pi-lightdm-theme"
 
-fungsi_main="main_process"
-fungsi_after="after"
 # download and enter config location
 dependencies ()
-{
-	sudo apt-get install fonts-cantarell fonts-lato -y
-}
-
-main_process ()
 {
 	cd /tmp
 	git clone https://github.com/alunux/pi-playground.git
 	cd $lokasi_config
-	
+	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
+	sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
+	sudo apt-get update -y
+	sudo apt-get install fonts-cantarell fonts-lato -y
+	sudo apt-get upgrade -y
+	sudo apt-get dist-upgrade -y
+}
+
+main_process ()
+{
 	# install icons
 	sudo cp -r pi-elementary-icons/elementary /usr/share/icons/
 	sudo chmod 755 -R /usr/share/icons/elementary
