@@ -1,0 +1,73 @@
+#!/bin/bash
+
+lokasi_config="$HOME/pi-playground"
+
+# enter config location
+cd $lokasi_config
+
+# install icons
+cp -r pi-elementary-icons/elementary /usr/share/icons/
+chmod 664 -R /usr/share/icons/elementary
+cp -r pi-elementary-icons/elementary-add /usr/share/icons/
+chmod 664 -R /usr/share/icons/elementary-add
+
+# install gtk themes
+cp -r Pi-Green/ /usr/share/themes
+chmod 664 -R /usr/share/themes/Pi-Green
+cp -r Pi-Grey/ /usr/share/themes
+chmod 664 -R /usr/share/themes/Pi-Grey
+
+# install lightdm themes
+cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
+chmod 755 -R /usr/share/lightdm-webkit/themes/pi-lightdm-theme
+echo greeter-session=
+
+# install logos
+cp pi-logos/logo-2.png /usr/share/pixmaps
+chmod 664 /usr/share/pixmaps/logo-2.png
+cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo-menu.png
+cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo.png
+
+# install plymouth themes
+cp -r pi-plymouth-theme/ /lib/plymouth/themes/pi
+chmod 755 -R /lib/plymouth/themes/pi
+echo -e "[Plymouth Theme]" \
+				"\nName=Pi" \
+				"\nDescription=A theme that features a background with a logo." \
+				"\nModuleName=script" \
+				"\n" \
+				"\n[script]" \
+				"\nImageDir=/lib/plymouth/themes/pi" \
+				"\nScriptFile=/lib/plymouth/themes/xubuntu-logo/pi.script" \
+				"\n" > /lib/plymouth/themes/default.plymouth		
+echo -e "[Plymouth Theme]" \
+				"\nName=Xubuntu Text" \
+				"\nDescription=Text mode theme based on xubuntu-logo theme" \
+				"\nModuleName=ubuntu-text" \
+				"\n" \
+				"\n[ubuntu-text]" \
+				"\ntitle=Xubuntu 14.04" \
+				"\nblack=0x000000" \
+				"\nwhite=0xffffff" \
+				"\nbrown=0x000000" \
+				"\nblue=0xffffff" > /lib/plymouth/themes/text.plymouth
+update-grub
+
+# install wallpaper
+cp pi-wallpapers/* /usr/share/backgrounds/
+chmod 664 /usr/share/backgrounds/*
+
+# install panel bg
+cp pi-panel-bg/* /usr/share/pixmaps
+chmod 664 /usr/share/pixmaps/panel.png /usr/share/pixmaps/panel-bg.png
+
+# install xdg config
+cp pi-xdg/* /etc/xdg/
+chmod 755 -R /etc/xdg/
+
+# setup config
+cp pi-scripts/pi-theme-script /usr/bin/
+chmod 755 /usr/bin/pi-theme-script
+pi-theme-script grey
+
+exit 0
