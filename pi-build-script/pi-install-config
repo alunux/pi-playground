@@ -18,6 +18,8 @@ dependencies ()
 	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
 	sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/libreoffice-ppa.gpg /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12.gpg /etc/apt/trusted.gpg.d/
 	sudo apt-get update -y
 	sudo apt-get install fonts-cantarell fonts-lato -y
 	sudo apt-get upgrade -y
