@@ -6,8 +6,13 @@ webkit_theme="pi-lightdm-theme"
 # download and enter config location
 dependencies ()
 {
+	sudo apt-get install git -y
 	cd /tmp
 	git clone https://github.com/alunux/pi-playground.git
+	if [ $? -ne 0 ]; then
+		echo "Proses Gagal" 
+		exit 1
+	fi
 	cd $lokasi_config
 	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
@@ -94,6 +99,10 @@ after ()
 }
 
 dependencies
+if [ $? -ne 0 ]; then 
+		echo "Proses Gagal"
+		exit 1
+fi
 main_process
 after
 exit 0
