@@ -3,10 +3,12 @@
 lokasi_config="/tmp/pi-playground"
 webkit_theme="pi-lightdm-theme"
 
+fungsi_main="main_process"
+fungsi_after="after"
 # download and enter config location
 dependencies ()
 {
-	apt-get install fonts-cantarell fonts-lato -y
+	sudo apt-get install fonts-cantarell fonts-lato -y
 }
 
 main_process ()
@@ -16,33 +18,33 @@ main_process ()
 	cd $lokasi_config
 	
 	# install icons
-	cp -r pi-elementary-icons/elementary /usr/share/icons/
-	chmod 755 -R /usr/share/icons/elementary
-	cp -r pi-elementary-icons/elementary-add /usr/share/icons/
-	chmod 755 -R /usr/share/icons/elementary-add
+	sudo cp -r pi-elementary-icons/elementary /usr/share/icons/
+	sudo chmod 755 -R /usr/share/icons/elementary
+	sudo cp -r pi-elementary-icons/elementary-add /usr/share/icons/
+	sudo chmod 755 -R /usr/share/icons/elementary-add
 
 	# install gtk themes
-	cp -r Pi-Green/ /usr/share/themes
-	chmod 755 -R /usr/share/themes/Pi-Green
-	cp -r Pi-Grey/ /usr/share/themes
-	chmod 755 -R /usr/share/themes/Pi-Grey
+	sudo cp -r Pi-Green/ /usr/share/themes
+	sudo chmod 755 -R /usr/share/themes/Pi-Green
+	sudo cp -r Pi-Grey/ /usr/share/themes
+	sudo chmod 755 -R /usr/share/themes/Pi-Grey
 	
 	# install lightdm themes
-	cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
-	chmod 755 -R /usr/share/lightdm-webkit/themes/pi-lightdm-theme
-	sed -i "s~\(webkit-theme=\).*~\1$webkit_theme~g" /etc/lightdm/lightdm-webkit-greeter.conf
-	echo greeter-session=lightdm-webkit-greeter >> /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
+	sudo cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
+	sudo chmod 755 -R /usr/share/lightdm-webkit/themes/pi-lightdm-theme
+	sudo sed -i "s~\(webkit-theme=\).*~\1$webkit_theme~g" /etc/lightdm/lightdm-webkit-greeter.conf
+	sudo echo greeter-session=lightdm-webkit-greeter >> /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
 	
 	# install logos
-	cp pi-logos/logo-2.png /usr/share/pixmaps
-	chmod 664 /usr/share/pixmaps/logo-2.png
-	cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo-menu.png
-	cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo.png
+	sudo cp pi-logos/logo-2.png /usr/share/pixmaps
+	sudo chmod 664 /usr/share/pixmaps/logo-2.png
+	sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo-menu.png
+	sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo.png
 	
 	# install plymouth themes
-	cp -r pi-plymouth-theme/ /lib/plymouth/themes/pi
-	chmod 755 -R /lib/plymouth/themes/pi
-	echo -e "[Plymouth Theme]" \
+	sudo cp -r pi-plymouth-theme/ /lib/plymouth/themes/pi
+	sudo chmod 755 -R /lib/plymouth/themes/pi
+	sudo echo -e "[Plymouth Theme]" \
 					"\nName=Pi" \
 					"\nDescription=A theme that features a background with a logo." \
 					"\nModuleName=script" \
@@ -51,7 +53,7 @@ main_process ()
 					"\nImageDir=/lib/plymouth/themes/pi" \
 					"\nScriptFile=/lib/plymouth/themes/xubuntu-logo/pi.script" \
 					"\n" > /lib/plymouth/themes/default.plymouth		
-	echo -e "[Plymouth Theme]" \
+	sudo echo -e "[Plymouth Theme]" \
 					"\nName=Xubuntu Text" \
 					"\nDescription=Text mode theme based on xubuntu-logo theme" \
 					"\nModuleName=ubuntu-text" \
@@ -64,28 +66,30 @@ main_process ()
 					"\nblue=0xffffff" > /lib/plymouth/themes/text.plymouth
 
 	# install wallpaper
-	cp pi-wallpapers/* /usr/share/backgrounds/
-	chmod 664 /usr/share/backgrounds/*
+	sudo cp pi-wallpapers/* /usr/share/backgrounds/
+	sudo chmod 664 /usr/share/backgrounds/*
 	
 	# install panel bg
-	cp pi-panel-bg/* /usr/share/pixmaps
-	chmod 664 /usr/share/pixmaps/panel.png /usr/share/pixmaps/panel-bg.png
+	sudo cp pi-panel-bg/* /usr/share/pixmaps
+	sudo chmod 664 /usr/share/pixmaps/panel.png /usr/share/pixmaps/panel-bg.png
 	
 	# install xdg config
-	rm -rf /etc/xdg/*
-	cp -r pi-xdg/* /etc/xdg/
-	chmod 755 -R /etc/xdg/
+	sudo rm -rf /etc/xdg/*
+	sudo cp -r pi-xdg/* /etc/xdg/
+	sudo chmod 755 -R /etc/xdg/
 	
 	# setup config
-	cp pi-scripts/pi-theme-script /usr/bin/
-	chmod 755 /usr/bin/pi-theme-script	
+	sudo cp pi-scripts/pi-theme-script /usr/bin/
+	sudo chmod 755 /usr/bin/pi-theme-script	
 }
 
 after ()
 {
+	sudo update-grub
 	pi-theme-script grey
 }
 
-sudo main_process dependencies
+dependencies
+main_process
 after
 exit 0
