@@ -6,6 +6,7 @@ webkit_theme="pi-lightdm-theme"
 # download and enter config location
 dependencies ()
 {
+	sudo apt-get install git
 	cd /tmp
 	git clone https://github.com/alunux/pi-playground.git
 	cd $lokasi_config
