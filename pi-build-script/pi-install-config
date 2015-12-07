@@ -17,7 +17,7 @@ dependencies ()
 		exit 1
 	fi
 	cd $lokasi_config
-	unzip pi-elementary-icons.zip
+	unzip pi-elementary-icons/pi-elementary-icons.zip
 	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
 	sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
@@ -33,12 +33,10 @@ dependencies ()
 main_process ()
 {
 	# install icons
-	sudo mv elementary/ /usr/share/icons/
-	sudo mv elementary-add/ /usr/share/icons/
-	#sudo cp -r pi-elementary-icons/elementary /usr/share/icons/
-	#sudo chmod 755 -R /usr/share/icons/elementary
-	#sudo cp -r pi-elementary-icons/elementary-add /usr/share/icons/
-	#sudo chmod 755 -R /usr/share/icons/elementary-add
+	sudo cp -r pi-elementary-icons/elementary /usr/share/icons/
+	sudo chmod 755 -R /usr/share/icons/elementary
+	sudo cp -r pi-elementary-icons/elementary-add /usr/share/icons/
+	sudo chmod 755 -R /usr/share/icons/elementary-add
 
 	# install gtk themes
 	sudo cp -r Pi-Green/ /usr/share/themes
