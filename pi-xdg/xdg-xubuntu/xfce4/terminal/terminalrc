@@ -26,7 +26,7 @@ ScrollingOnOutput=FALSE
 TabActivityColor=#262656568080
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 BackgroundMode=TERMINAL_BACKGROUND_IMAGE
-BackgroundImageFile=/usr/share/pixmaps/panel-bg.png
+BackgroundImageFile=/usr/share/pixmaps/panel.png
 BackgroundDarkness=0,000000
 TitleInitial=Pi Terminal
 
