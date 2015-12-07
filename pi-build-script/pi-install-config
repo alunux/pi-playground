@@ -101,6 +101,7 @@ main_process ()
 after ()
 {
 	sudo apt-get autoremove --purge
+	sudo rm -rf $lokasi_config
 	sudo update-grub
 	pi-theme-script grey
 }
