@@ -5,7 +5,7 @@
     <property name="frame_opacity" type="int" value="100"/>
     <property name="show_frame_shadow" type="bool" value="true"/>
     <property name="show_popup_shadow" type="bool" value="false"/>
-    <property name="theme" type="string" value="Pi-Green"/>
+    <property name="theme" type="string" value="Pi-Grey"/>
     <property name="use_compositing" type="bool" value="true"/>
     <property name="workspace_count" type="int" value="1"/>
     <property name="workspace_names" type="array">
