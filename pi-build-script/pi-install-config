@@ -23,8 +23,12 @@ dependencies ()
 	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/libreoffice-ppa.gpg /etc/apt/trusted.gpg.d/
 	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12.gpg /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/elementary-os-daily-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/elementary-os-daily.gpg /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add-trusty.list /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add.gpg /etc/apt/trusted.gpg.d/
 	sudo apt-get update -y
-	sudo apt-get install lightdm-webkit-greeter fonts-cantarell fonts-lato -y
+	sudo apt-get install lightdm-webkit-greeter fonts-cantarell fonts-lato elementary-icons-theme elementary-add-icon-theme -y
 	sudo apt-get upgrade -y
 	sudo apt-get dist-upgrade -y
 }
@@ -32,10 +36,7 @@ dependencies ()
 main_process ()
 {
 	# install icons
-	sudo cp -r pi-elementary-icons/elementary /usr/share/icons/
-	sudo chmod 755 -R /usr/share/icons/elementary
-	sudo cp -r pi-elementary-icons/elementary-add /usr/share/icons/
-	sudo chmod 755 -R /usr/share/icons/elementary-add
+	sudo cp -r pi-status-icons/status /usr/share/icons/elementary/
 
 	# install gtk themes
 	sudo cp -r Pi-Green/ /usr/share/themes
