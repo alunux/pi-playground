@@ -17,7 +17,6 @@ dependencies ()
 		exit 1
 	fi
 	cd $lokasi_config
-	unzip pi-elementary-icons/pi-elementary-icons.zip
 	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
 	sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
@@ -101,6 +100,7 @@ main_process ()
 
 after ()
 {
+	sudo apt-get autoremove --purge
 	sudo update-grub
 	pi-theme-script grey
 }
