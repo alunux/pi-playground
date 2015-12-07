@@ -62,7 +62,7 @@ main_process ()
 					"\n" \
 					"\n[script]" \
 					"\nImageDir=/lib/plymouth/themes/pi" \
-					"\nScriptFile=/lib/plymouth/themes/xubuntu-logo/pi.script" \
+					"\nScriptFile=/lib/plymouth/themes/pi/pi.script" \
 					"\n" | sudo tee /lib/plymouth/themes/default.plymouth		
 	echo -e "[Plymouth Theme]" \
 					"\nName=Pi Text" \
@@ -86,6 +86,7 @@ main_process ()
 	
 	# install xdg config
 	sudo rm -rf /etc/xdg/*
+	rm -rf $HOME/.config/xfce4/
 	sudo cp -r pi-xdg/* /etc/xdg/
 	sudo chmod 755 -R /etc/xdg/
 	
