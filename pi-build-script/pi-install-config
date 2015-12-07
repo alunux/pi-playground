@@ -101,7 +101,8 @@ main_process ()
 
 after ()
 {
-	sudo apt-get autoremove --purge
+	sudo apt-get purge apport
+	sudo apt-get autoremove --purge -y
 	sudo rm -rf $lokasi_config
 	sudo update-grub
 	pi-theme-script grey

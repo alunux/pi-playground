@@ -25,7 +25,7 @@
       <property name="leave-opacity" type="uint" value="100"/>
       <property name="mode" type="uint" value="0"/>
       <property name="autohide-behavior" type="uint" value="0"/>
-      <property name="background-image" type="string" value="/usr/share/pixmaps/panel-bg.png"/>
+      <property name="background-image" type="string" value="/usr/share/pixmaps/panel.png"/>
     </property>
   </property>
   <property name="plugins" type="empty">

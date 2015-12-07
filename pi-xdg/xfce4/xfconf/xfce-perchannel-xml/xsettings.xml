@@ -2,7 +2,7 @@
 
 <channel name="xsettings" version="1.0">
   <property name="Net" type="empty">
-    <property name="ThemeName" type="string" value="Pi-Green"/>
+    <property name="ThemeName" type="string" value="Pi-Grey"/>
     <property name="IconThemeName" type="string" value="elementary-add"/>
     <property name="DoubleClickTime" type="empty"/>
     <property name="DoubleClickDistance" type="empty"/>
