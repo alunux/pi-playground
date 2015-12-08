@@ -36,6 +36,7 @@ dependencies ()
 	fi
 	cd $lokasi_config
 	prepare_source
+	packages=$(cat package_list)
 	sudo apt-get update -y
 	sudo apt-get install $packages -y
 	sudo apt-get upgrade -y
