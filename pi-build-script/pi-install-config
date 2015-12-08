@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# all variables are declaced here
 lokasi_config="/tmp/pi-playground"
 webkit_theme="pi-lightdm-theme"
 session="Pi Session"
