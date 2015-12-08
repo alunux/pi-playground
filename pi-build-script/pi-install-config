@@ -133,6 +133,7 @@ after ()
 	sudo rm -rf $lokasi_config
 	cd $HOME
 	sudo update-grub
+	sudo tlp start
 	pi-theme-script grey
 }
 

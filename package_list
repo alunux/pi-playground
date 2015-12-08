@@ -5,3 +5,15 @@ fonts-lato
 libreoffice-style-breeze
 libreoffice-style-sifr
 lightdm-webkit-greeter
+
+build-essentials
+dkms
+module-assistant
+geany
+ubuntu-restricted-extras
+vlc
+audacious
+inkscape
+libreoffice
+deluge
+tlp
