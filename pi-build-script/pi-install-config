@@ -131,7 +131,7 @@ main_process ()
 
 	# setup config
 	sudo cp pi-scripts/pi-theme-script /usr/bin/
-	sudo chmod 755 /usr/bin/pi-theme-script	
+	sudo chmod 755 /usr/bin/pi-theme-script
 }
 
 after ()
@@ -146,7 +146,7 @@ after ()
 }
 
 dependencies
-if [ $? -ne 0 ]; then 
+if [ $? -ne 0 ]; then
 		echo "Proses Gagal"
 		exit 1
 fi
