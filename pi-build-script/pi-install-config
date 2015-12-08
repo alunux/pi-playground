@@ -2,6 +2,24 @@
 
 lokasi_config="/tmp/pi-playground"
 webkit_theme="pi-lightdm-theme"
+session="Pi Session"
+greeter="lightdm-webkit-greeter"
+packages="cat package_list"
+
+# prepare sources.list
+prepare_source ()
+{
+	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
+	sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/libreoffice-ppa.gpg /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12.gpg /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/elementary-os-daily-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/elementary-os-daily.gpg /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add-trusty.list /etc/apt/trusted.gpg.d/
+	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add.gpg /etc/apt/trusted.gpg.d/
+}
 
 # download and enter config location
 dependencies ()
@@ -17,18 +35,9 @@ dependencies ()
 		exit 1
 	fi
 	cd $lokasi_config
-	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
-	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
-	sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
-	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
-	sudo cp pi-apt-lists/libreoffice-ppa.gpg /etc/apt/trusted.gpg.d/
-	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12.gpg /etc/apt/trusted.gpg.d/
-	sudo cp pi-apt-lists/elementary-os-daily-trusty.list /etc/apt/sources.list.d/
-	sudo cp pi-apt-lists/elementary-os-daily.gpg /etc/apt/trusted.gpg.d/
-	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add-trusty.list /etc/apt/trusted.gpg.d/
-	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add.gpg /etc/apt/trusted.gpg.d/
+	prepare_source
 	sudo apt-get update -y
-	sudo apt-get install lightdm-webkit-greeter fonts-cantarell fonts-lato elementary-icon-theme elementary-add-icon-theme -y
+	sudo apt-get install $packages -y
 	sudo apt-get upgrade -y
 	sudo apt-get dist-upgrade -y
 }
@@ -45,10 +54,28 @@ main_process ()
 	sudo chmod 755 -R /usr/share/themes/Pi-Grey
 
 	# install lightdm themes
+	sudo cp /usr/share/xsessions/xubuntu.desktop /usr/share/xsessions/pi.desktop
+	sudo sed -i "s~\(Name=\).*~\1$session~g" /usr/share/xsessions/pi.desktop
 	sudo cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
 	sudo chmod 755 -R /usr/share/lightdm-webkit/themes/pi-lightdm-theme
 	sudo sed -i "s~\(webkit-theme=\).*~\1$webkit_theme~g" /etc/lightdm/lightdm-webkit-greeter.conf
-	echo "greeter-session=lightdm-webkit-greeter" | sudo tee -a /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
+	echo -e "[SeatDefaults]" \
+			"\nuser-session=pi" \
+			"\ngreeter-session=lightdm-gtk-greeter" | sudo tee /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
+	echo -e "[greeter]" \
+			"\nbackground=/usr/share/backgrounds/wallgrid.png" \
+			"\ntheme-name=Pi-Grey" \
+			"\nicon-theme-name=elementary-add" \
+			"\nfont-name=Lato 10" \
+			"\nxft-antialias=true" \
+			"\nxft-dpi=96" \
+			"\nxft-hintstyle=slight" \
+			"\nxft-rgba=rgb" \
+			"\nshow-indicators=power;~session;~power;" \
+			"\nshow-clock=true" \
+			"\nclock-format=%d %b, %H:%M" \
+			"\nkeyboard=onboard" | sudo tee /etc/lightdm/lightdm-gtk-greeter.conf
+	#sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
 
 	# install logos
 	sudo cp pi-logos/logo-2.png /usr/share/pixmaps
@@ -60,25 +87,25 @@ main_process ()
 	sudo cp -r pi-plymouth-theme/ /lib/plymouth/themes/pi
 	sudo chmod 755 -R /lib/plymouth/themes/pi
 	echo -e "[Plymouth Theme]" \
-					"\nName=pi" \
-					"\nDescription=A theme that features a background with a logo." \
-					"\nModuleName=script" \
-					"\n" \
-					"\n[script]" \
-					"\nImageDir=/lib/plymouth/themes/pi" \
-					"\nScriptFile=/lib/plymouth/themes/pi/pi.script" \
-					"\n" | sudo tee /lib/plymouth/themes/default.plymouth
+			"\nName=pi" \
+			"\nDescription=A theme that features a background with a logo." \
+			"\nModuleName=script" \
+			"\n" \
+			"\n[script]" \
+			"\nImageDir=/lib/plymouth/themes/pi" \
+			"\nScriptFile=/lib/plymouth/themes/pi/pi.script" \
+			"\n" | sudo tee /lib/plymouth/themes/default.plymouth
 	echo -e "[Plymouth Theme]" \
-					"\nName=Pi Text" \
-					"\nDescription=Text mode theme based on xubuntu-logo theme" \
-					"\nModuleName=ubuntu-text" \
-					"\n" \
-					"\n[ubuntu-text]" \
-					"\ntitle=Pi 15.12" \
-					"\nblack=0x000000" \
-					"\nwhite=0xffffff" \
-					"\nbrown=0x000000" \
-					"\nblue=0xffffff" | sudo tee /lib/plymouth/themes/text.plymouth
+			"\nName=Pi Text" \
+			"\nDescription=Text mode theme based on xubuntu-logo theme" \
+			"\nModuleName=ubuntu-text" \
+			"\n" \
+			"\n[ubuntu-text]" \
+			"\ntitle=Pi 15.12" \
+			"\nblack=0x000000" \
+			"\nwhite=0xffffff" \
+			"\nbrown=0x000000" \
+			"\nblue=0xffffff" | sudo tee /lib/plymouth/themes/text.plymouth
 
 	# install wallpaper
 	sudo cp pi-wallpapers/* /usr/share/backgrounds/
@@ -104,6 +131,7 @@ after ()
 	sudo apt-get purge apport -y
 	sudo apt-get autoremove --purge -y
 	sudo rm -rf $lokasi_config
+	cd $HOME
 	sudo update-grub
 	pi-theme-script grey
 }
