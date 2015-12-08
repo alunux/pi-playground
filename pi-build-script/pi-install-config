@@ -8,21 +8,27 @@ greeter="lightdm-webkit-greeter"
 # prepare sources.list
 prepare_source ()
 {
-	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
+	# copy ubuntu main sources.list file to /etc/apt/
 	sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
+
+	# add additional repos for Pi
+	sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/elementary-os-daily-trusty.list /etc/apt/sources.list.d/
+	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add-trusty.list /etc/apt/sources.list.d/
+
+	# add gpg key for additional repos
 	sudo cp pi-apt-lists/libreoffice-ppa.gpg /etc/apt/trusted.gpg.d/
 	sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12.gpg /etc/apt/trusted.gpg.d/
-	sudo cp pi-apt-lists/elementary-os-daily-trusty.list /etc/apt/sources.list.d/
 	sudo cp pi-apt-lists/elementary-os-daily.gpg /etc/apt/trusted.gpg.d/
-	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add-trusty.list /etc/apt/trusted.gpg.d/
 	sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add.gpg /etc/apt/trusted.gpg.d/
 }
 
 # download and enter config location
 dependencies ()
 {
+	sudo apt-get update -y
 	sudo apt-get install git -y
 	cd /tmp
 	if [ ! -d $lokasi_config ]; then
@@ -75,7 +81,8 @@ main_process ()
 			"\nshow-clock=true" \
 			"\nclock-format=%d %b, %H:%M" \
 			"\nkeyboard=onboard" | sudo tee /etc/lightdm/lightdm-gtk-greeter.conf
-	#sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
+	# there are some bugs in our lightdm-webkit-theme, so we disable it
+	# sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
 
 	# install logos
 	sudo cp pi-logos/logo-2.png /usr/share/pixmaps
