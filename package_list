@@ -6,7 +6,7 @@ libreoffice-style-breeze
 libreoffice-style-sifr
 lightdm-webkit-greeter
 
-build-essentials
+build-essential
 dkms
 module-assistant
 geany

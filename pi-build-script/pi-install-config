@@ -21,7 +21,7 @@ prepare_source ()
 }
 
 # download and enter config location
-dependencies ()
+dependencies ()cd
 {
 	sudo apt-get install git -y
 	cd /tmp
