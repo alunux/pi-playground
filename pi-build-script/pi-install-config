@@ -4,7 +4,6 @@ lokasi_config="/tmp/pi-playground"
 webkit_theme="pi-lightdm-theme"
 session="Pi Session"
 greeter="lightdm-webkit-greeter"
-packages=$(cat package_list)
 
 # prepare sources.list
 prepare_source ()
