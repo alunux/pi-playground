@@ -6,7 +6,7 @@ webkit_theme="pi-lightdm-theme"
 session="Pi Session"
 greeter="lightdm-webkit-greeter"
 
-# prepare sources.list alunux
+# prepare sources.list
 prepare_source ()
 {
     # copy ubuntu main sources.list file to /etc/apt/
