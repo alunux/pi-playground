@@ -147,8 +147,8 @@ after ()
 
 dependencies
 if [ $? -ne 0 ]; then
-        echo "Proses Gagal"
-        exit 1
+    echo "Proses Gagal"
+    exit 1
 fi
 main_process
 after
