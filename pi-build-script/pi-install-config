@@ -18,12 +18,14 @@ prepare_source ()
     sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
     sudo cp pi-apt-lists/elementary-os-daily-trusty.list /etc/apt/sources.list.d/
     sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add-trusty.list /etc/apt/sources.list.d/
+    sudo cp pi-apt-lists/linrunner-tlp-trusty.list /etc/apt/sources.list.d/
 
     # add gpg key for additional repos
     sudo cp pi-apt-lists/libreoffice-ppa.gpg /etc/apt/trusted.gpg.d/
     sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12.gpg /etc/apt/trusted.gpg.d/
     sudo cp pi-apt-lists/elementary-os-daily.gpg /etc/apt/trusted.gpg.d/
     sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add.gpg /etc/apt/trusted.gpg.d/
+    sudo cp pi-apt-lists/linrunner-tlp.gpg /etc/apt/trusted.gpg.d/
 }
 
 # download and enter config location
