@@ -129,9 +129,15 @@ main_process ()
     sudo cp -r pi-xdg/* /etc/xdg/
     sudo chmod 755 -R /etc/xdg/
 
-    # setup config
+    # install Pi default apps
     sudo cp pi-scripts/pi-theme-script /usr/bin/
     sudo chmod 755 /usr/bin/pi-theme-script
+    sudo mkdir -p /usr/share/pi-apps/pi-theme-changer/
+    sudo cp pi-theme-changer/bin/pi-theme-changer /usr/share/pi-apps/pi-theme-changer/
+    sudo cp -r pi-theme-changer/img/ /usr/share/pi-apps/pi-theme-changer/
+    sudo chmod +x /usr/share/pi-apps/pi-theme-changer/pi-theme-changer
+    sudo chmod 644 -R /usr/share/pi-apps/pi-theme-changer/img/
+    sudo cp pi-theme-changer/pi-theme-changer.desktop /usr/share/applications/
 }
 
 after ()
