@@ -89,7 +89,8 @@ main_process ()
 
     # install logos
     sudo cp pi-logos/logo-2.png /usr/share/pixmaps
-    sudo chmod 664 /usr/share/pixmaps/logo-2.png
+    sudo cp pi-logos/logo-7.png /usr/share/pixmaps
+    sudo chmod 664 /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/logo-7.png
     sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo-menu.png
     sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo.png
 
@@ -137,8 +138,7 @@ main_process ()
     sudo mkdir -p /usr/share/pi-apps/pi-theme-changer/
     sudo cp pi-theme-changer/bin/pi-theme-changer /usr/share/pi-apps/pi-theme-changer/
     sudo cp -r pi-theme-changer/img/ /usr/share/pi-apps/pi-theme-changer/
-    sudo chmod +x /usr/share/pi-apps/pi-theme-changer/pi-theme-changer
-    sudo chmod 644 -R /usr/share/pi-apps/pi-theme-changer/img/
+    sudo chmod 755 -R /usr/share/pi-apps/pi-theme-changer/
     sudo cp pi-theme-changer/pi-theme-changer.desktop /usr/share/applications/
 }
 
