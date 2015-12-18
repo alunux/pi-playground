@@ -35,7 +35,7 @@ dependencies ()
     sudo apt-get install git -y
     cd /tmp
     if [ ! -d $lokasi_config ]; then
-        git clone https://github.com/alunux/pi-playground.git
+        git clone https://github.com/alunux/pi-playground.git --depth 1
     fi
     if [ $? -ne 0 ]; then
         echo "Proses Gagal"
