@@ -45,7 +45,9 @@ dependencies ()
     cd $lokasi_config
     prepare_source
     packages=$(cat package_list)
+    packages_rm=$(cat package_remove)
     sudo apt-get update -y
+    sudo apt-get purge $packages_rm -y
     sudo apt-get install $packages -y
     sudo apt-get upgrade -y
     sudo apt-get dist-upgrade -y
