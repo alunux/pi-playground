@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Pi Look Changer
+Categories=GNOME;GTK;Settings;DesktopSettings;X-XFCE;
+Keywords=Configuration;Profile;User;
+Comment=Change Pi Look & Feel
+Exec=/usr/share/pi-apps/pi-theme-changer/pi-theme-changer
+Icon=logo-7
+Terminal=false
+Type=Application

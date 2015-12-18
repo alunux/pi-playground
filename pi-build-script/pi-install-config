@@ -5,6 +5,7 @@ lokasi_config="/tmp/pi-playground"
 webkit_theme="pi-lightdm-theme"
 session="Pi Session"
 greeter="lightdm-webkit-greeter"
+arch=$(uname -m)
 
 # prepare Pi sources.list
 prepare_source ()
@@ -138,10 +139,15 @@ main_process ()
     sudo cp pi-scripts/pi-theme-script /usr/bin/
     sudo chmod 755 /usr/bin/pi-theme-script
     sudo mkdir -p /usr/share/pi-apps/pi-theme-changer/
-    sudo cp pi-theme-changer/bin/pi-theme-changer /usr/share/pi-apps/pi-theme-changer/
+    if [[ "$arch" == "x86_64" ]]; then
+    	sudo cp pi-theme-changer/bin/pi-theme-changer64 /usr/share/pi-apps/pi-theme-changer/
+    	sudo cp pi-theme-changer/pi-theme-changer64.desktop /usr/share/applications/
+    else
+        sudo cp pi-theme-changer/bin/pi-theme-changer /usr/share/pi-apps/pi-theme-changer/
+        sudo cp pi-theme-changer/pi-theme-changer.desktop /usr/share/applications/
+    fi
     sudo cp -r pi-theme-changer/img/ /usr/share/pi-apps/pi-theme-changer/
     sudo chmod 755 -R /usr/share/pi-apps/pi-theme-changer/
-    sudo cp pi-theme-changer/pi-theme-changer.desktop /usr/share/applications/
 }
 
 after ()
