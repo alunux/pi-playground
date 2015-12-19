@@ -134,6 +134,8 @@ main_process ()
     rm -rf $HOME/.config/xfce4/
     sudo cp -r pi-xdg/* /etc/xdg/
     sudo chmod 755 -R /etc/xdg/
+    cp pi-xdg/Thunar/uca.xml $HOME/.config/Thunar/uca.xml
+    chmod 755 $HOME/.config/Thunar/uca.xml
 
     # install Pi default apps
     sudo cp pi-scripts/pi-theme-script /usr/bin/
