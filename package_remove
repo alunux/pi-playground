@@ -15,6 +15,7 @@ pidgin
 pidgin-data
 pidgin-libnotify
 pidgin-otr
+software-center
 transmission-common
 transmission-gtk
 xchat
