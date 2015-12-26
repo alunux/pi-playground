@@ -1,0 +1,183 @@
+#!/bin/bash
+
+# all variables are declaced here
+lokasi_config="/tmp/pi-playground"
+webkit_theme="pi-lightdm-theme"
+session="Pi Session"
+greeter="lightdm-webkit-greeter"
+arch=$(uname -m)
+
+# prepare Pi sources.list
+prepare_source ()
+{
+    # copy ubuntu main sources.list file to /etc/apt/
+    sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
+
+    # add additional repos for Pi
+    sudo cp pi-apt-lists/libreoffice-ppa-trusty.list /etc/apt/sources.list.d/
+    sudo cp pi-apt-lists/xubuntu-dev-extras-trusty.list /etc/apt/sources.list.d/
+    sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12-trusty.list /etc/apt/sources.list.d/
+    sudo cp pi-apt-lists/elementary-os-daily-trusty.list /etc/apt/sources.list.d/
+    sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add-trusty.list /etc/apt/sources.list.d/
+    sudo cp pi-apt-lists/linrunner-tlp-trusty.list /etc/apt/sources.list.d/
+
+    # add gpg key for additional repos
+    sudo cp pi-apt-lists/libreoffice-ppa.gpg /etc/apt/trusted.gpg.d/
+    sudo cp pi-apt-lists/xubuntu-dev-xfce-4_12.gpg /etc/apt/trusted.gpg.d/
+    sudo cp pi-apt-lists/elementary-os-daily.gpg /etc/apt/trusted.gpg.d/
+    sudo cp pi-apt-lists/varlesh-l-ppa-elementary-add.gpg /etc/apt/trusted.gpg.d/
+    sudo cp pi-apt-lists/linrunner-tlp.gpg /etc/apt/trusted.gpg.d/
+}
+
+# download and enter config location
+dependencies ()
+{
+    sudo apt-get update -y
+    sudo apt-get install git -y
+    cd /tmp
+    if [ ! -d $lokasi_config ]; then
+        git clone https://github.com/alunux/pi-playground.git --depth 1
+    fi
+    if [ $? -ne 0 ]; then
+        echo "Proses Gagal"
+        sudo rm -rf $lokasi_config
+        exit 1
+    fi
+    cd $lokasi_config
+    prepare_source
+    packages=$(cat package_list)
+    packages_rm=$(cat package_remove)
+    sudo apt-get update -y
+    sudo apt-get purge $packages_rm -y
+    sudo apt-get install $packages -y
+    sudo apt-get upgrade -y
+    sudo apt-get dist-upgrade -y
+}
+
+main_process ()
+{
+    # distro identity
+    echo -e "\nDISTRIB_ID=Pi" \
+            "\nDISTRIB_RELEASE=15.12" \
+            "\nDISTRIB_CODENAME=trusty" \
+            "\nDISTRIB_DESCRIPTION=\"Pi 15.12\"" | sudo tee /etc/lsb-release
+    echo "Pi 15.12 \n \l" | sudo tee /etc/issue
+    echo "Pi 15.12" | sudo tee /etc/issue.net
+    sudo cp /usr/share/python-apt/templates/Ubuntu.info /usr/share/python-apt/templates/Pi.info
+    sudo cp /usr/share/python-apt/templates/Ubuntu.mirrors /usr/share/python-apt/templates/Pi.mirrors
+
+    # install icons
+    sudo cp -r pi-status-icons/status /usr/share/icons/elementary/
+
+    # install gtk themes
+    sudo cp -r Pi-Green/ /usr/share/themes
+    sudo chmod 755 -R /usr/share/themes/Pi-Green
+    sudo cp -r Pi-Grey/ /usr/share/themes
+    sudo chmod 755 -R /usr/share/themes/Pi-Grey
+
+    # install lightdm themes
+    sudo cp /usr/share/xsessions/xubuntu.desktop /usr/share/xsessions/pi.desktop
+    sudo sed -i "s~\(Name=\).*~\1$session~g" /usr/share/xsessions/pi.desktop
+    sudo cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
+    sudo chmod 755 -R /usr/share/lightdm-webkit/themes/pi-lightdm-theme
+    sudo sed -i "s~\(webkit-theme=\).*~\1$webkit_theme~g" /etc/lightdm/lightdm-webkit-greeter.conf
+    echo -e "[SeatDefaults]" \
+            "\nuser-session=pi" \
+            "\ngreeter-session=lightdm-gtk-greeter" | sudo tee /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
+    echo -e "[greeter]" \
+            "\nbackground=/usr/share/backgrounds/wallgrid.png" \
+            "\ntheme-name=Pi-Grey" \
+            "\nicon-theme-name=elementary-add" \
+            "\nfont-name=Lato 10" \
+            "\nxft-antialias=true" \
+            "\nxft-dpi=96" \
+            "\nxft-hintstyle=slight" \
+            "\nxft-rgba=rgb" \
+            "\nshow-indicators=power;~session;~power;" \
+            "\nshow-clock=true" \
+            "\nclock-format=%d %b, %H:%M" \
+            "\nkeyboard=onboard" | sudo tee /etc/lightdm/lightdm-gtk-greeter.conf
+    # there are some bugs in our lightdm-webkit-theme, so we disable it
+    # sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf.d/10-xubuntu.conf
+
+    # install logos
+    sudo cp pi-logos/logo-2.png /usr/share/pixmaps
+    sudo cp pi-logos/logo-7.png /usr/share/pixmaps
+    sudo chmod 664 /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/logo-7.png
+    sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo-menu.png
+    sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo.png
+
+    # install plymouth themes
+    sudo cp -r pi-plymouth-theme/ /lib/plymouth/themes/pi
+    sudo chmod 755 -R /lib/plymouth/themes/pi
+    echo -e "[Plymouth Theme]" \
+            "\nName=pi" \
+            "\nDescription=A theme that features a background with a logo." \
+            "\nModuleName=script" \
+            "\n" \
+            "\n[script]" \
+            "\nImageDir=/lib/plymouth/themes/pi" \
+            "\nScriptFile=/lib/plymouth/themes/pi/pi.script" \
+            "\n" | sudo tee /lib/plymouth/themes/default.plymouth
+    echo -e "[Plymouth Theme]" \
+            "\nName=Pi Text" \
+            "\nDescription=Text mode theme based on xubuntu-logo theme" \
+            "\nModuleName=ubuntu-text" \
+            "\n" \
+            "\n[ubuntu-text]" \
+            "\ntitle=Pi 15.12" \
+            "\nblack=0x000000" \
+            "\nwhite=0xffffff" \
+            "\nbrown=0x000000" \
+            "\nblue=0xffffff" | sudo tee /lib/plymouth/themes/text.plymouth
+
+    # install wallpaper
+    sudo cp pi-wallpapers/* /usr/share/backgrounds/
+    sudo chmod 664 /usr/share/backgrounds/*
+
+    # install panel bg
+    sudo cp pi-panel-bg/* /usr/share/pixmaps
+    sudo chmod 664 /usr/share/pixmaps/panel.png /usr/share/pixmaps/panel-bg.png
+
+    # install xdg config
+    sudo rm -rf /etc/xdg/*
+    rm -rf $HOME/.config/xfce4/
+    sudo cp -r pi-xdg/* /etc/xdg/
+    sudo chmod 755 -R /etc/xdg/
+    cp pi-xdg/Thunar/uca.xml $HOME/.config/Thunar/uca.xml
+    chmod 755 $HOME/.config/Thunar/uca.xml
+
+    # install Pi default apps
+    sudo cp pi-scripts/pi-theme-script /usr/bin/
+    sudo chmod 755 /usr/bin/pi-theme-script
+    sudo mkdir -p /usr/share/pi-apps/pi-theme-changer/
+    if [[ "$arch" == "x86_64" ]]; then
+    	sudo cp pi-theme-changer/bin/pi-theme-changer64 /usr/share/pi-apps/pi-theme-changer/
+    	sudo cp pi-theme-changer/pi-theme-changer64.desktop /usr/share/applications/
+    else
+        sudo cp pi-theme-changer/bin/pi-theme-changer /usr/share/pi-apps/pi-theme-changer/
+        sudo cp pi-theme-changer/pi-theme-changer.desktop /usr/share/applications/
+    fi
+    sudo cp -r pi-theme-changer/img/ /usr/share/pi-apps/pi-theme-changer/
+    sudo chmod 755 -R /usr/share/pi-apps/pi-theme-changer/
+}
+
+after ()
+{
+    sudo apt-get purge apport -y
+    sudo apt-get autoremove --purge -y
+    sudo rm -rf $lokasi_config
+    cd $HOME
+    sudo update-grub
+    sudo tlp start
+    pi-theme-script grey
+}
+
+dependencies
+if [ $? -ne 0 ]; then
+    echo "Proses Gagal"
+    exit 1
+fi
+main_process
+after
+exit 0
