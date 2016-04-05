@@ -3,7 +3,6 @@ bleachbit
 build-essential
 deluge
 dkms
-elementary-add-icon-theme
 elementary-icon-theme
 ffmpegthumbnailer
 fonts-cantarell
