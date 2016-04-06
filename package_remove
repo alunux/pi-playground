@@ -1,14 +1,7 @@
-abiword
-abiword-common
-abiword-plugin-grammar
-abiword-plugin-mathview
 gmusicbrowser
 gnome-mines
 gnome-sudoku
 gnomine
-gnumeric
-gnumeric-common
-gnumeric-doc
 mousepad
 parole
 pidgin
@@ -18,6 +11,3 @@ pidgin-otr
 software-center
 transmission-common
 transmission-gtk
-xchat
-xchat-common
-xchat-indicator

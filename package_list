@@ -22,6 +22,7 @@ lightdm-webkit-greeter
 module-assistant
 qt4-qtconfig
 tlp
+tlp-rdw
 tumbler-plugins-extra
 ubuntu-restricted-extras
 vlc
