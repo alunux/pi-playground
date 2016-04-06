@@ -59,9 +59,6 @@ main_process ()
     sudo cp /usr/share/python-apt/templates/Ubuntu.info /usr/share/python-apt/templates/Pi.info
     sudo cp /usr/share/python-apt/templates/Ubuntu.mirrors /usr/share/python-apt/templates/Pi.mirrors
 
-    # install icons
-    sudo cp -r pi-status-icons/status /usr/share/icons/elementary/
-
     # install gtk themes
     sudo cp -r Pi-Green/ /usr/share/themes
     sudo chmod 755 -R /usr/share/themes/Pi-Green
@@ -98,7 +95,7 @@ main_process ()
     sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo.png
 
     #plymouth config
-	sudo sed -i 's/"quiet splash"/""/g' /etc/default/grub
+    sudo sed -i 's/"quiet splash"/""/g' /etc/default/grub
 
     # install wallpaper
     sudo cp pi-wallpapers/* /usr/share/backgrounds/
