@@ -43,6 +43,9 @@ dependencies ()
     sudo apt-get update -y
     sudo apt-get purge $packages_rm -y
     sudo apt-get install $packages -y
+    if [[ "$arch" == "x86_64" ]]; then
+		sudo apt-get install grub-efi-amd64-signed shim-signed -y
+	fi
     sudo apt-get upgrade -y
     sudo apt-get dist-upgrade -y
 }
@@ -95,7 +98,7 @@ main_process ()
     sudo cp /usr/share/pixmaps/logo-2.png /usr/share/pixmaps/xubuntu-logo.png
 
     #plymouth config
-    sudo sed -i 's/"quiet splash"/""/g' /etc/default/grub
+    #sudo sed -i 's/"quiet splash"/""/g' /etc/default/grub
 
     # install wallpaper
     sudo cp pi-wallpapers/* /usr/share/backgrounds/
