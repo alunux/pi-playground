@@ -15,6 +15,7 @@ gufw
 indicator-application-gtk2
 indicator-sound-gtk2
 inkscape
+libavcodec-extra
 libgdk-pixbuf2.0-dev
 libreoffice
 libreoffice-style-breeze
