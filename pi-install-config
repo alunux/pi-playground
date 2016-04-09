@@ -41,13 +41,14 @@ dependencies ()
     packages=$(cat package_list)
     packages_rm=$(cat package_remove)
     sudo apt-get update -y
+    sudo apt-get install apt-fast -y
     sudo apt-get purge $packages_rm -y
-    sudo apt-get install $packages -y
+    sudo apt-fast install $packages -y
     if [[ "$arch" == "x86_64" ]]; then
-		sudo apt-get install grub-efi-amd64-signed shim-signed -y
+		sudo apt-fast install grub-efi-amd64-signed shim-signed -y
 	fi
-    sudo apt-get upgrade -y
-    sudo apt-get dist-upgrade -y
+    sudo apt-fast upgrade -y
+    sudo apt-fast dist-upgrade -y
 }
 
 main_process ()
@@ -71,7 +72,7 @@ main_process ()
     # install Pi session
     sudo cp /usr/share/xsessions/xubuntu.desktop /usr/share/xsessions/pi.desktop
     sudo sed -i "s~\(Name=\).*~\1$session~g" /usr/share/xsessions/pi.desktop
-    
+
     # install lightdm themes
     sudo cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
     sudo chmod 755 -R /usr/share/lightdm-webkit/themes/pi-lightdm-theme
