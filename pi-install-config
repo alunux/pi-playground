@@ -93,8 +93,8 @@ main_process ()
     # there are some bugs in our lightdm-webkit-theme, so we disable it
     # sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf
     echo -e "[SeatDefaults]" \
-			"greeter-session=lightdm-webkit-greeter" \
-			"user-session=your-session" | sudo tee /etc/lightdm/lightdm.conf
+			"\ngreeter-session=lightdm-webkit-greeter" \
+			"\nuser-session=your-session" | sudo tee /etc/lightdm/lightdm.conf
 
     # install logos
     sudo cp pi-logos/logo-2.png /usr/share/pixmaps
