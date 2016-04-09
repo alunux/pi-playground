@@ -94,7 +94,7 @@ main_process ()
     # sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf
     echo -e "[SeatDefaults]" \
 			"\ngreeter-session=lightdm-webkit-greeter" \
-			"\nuser-session=Pi Session" | sudo tee /etc/lightdm/lightdm.conf
+			"\nuser-session=pi" | sudo tee /etc/lightdm/lightdm.conf
 
     # install logos
     sudo cp pi-logos/logo-2.png /usr/share/pixmaps
