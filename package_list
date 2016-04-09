@@ -27,4 +27,7 @@ tlp
 tlp-rdw
 tumbler-plugins-extra
 ubuntu-restricted-extras
+virtualbox-guest-dkms
+virtualbox-guest-utils
+virtualbox-guest-x11
 vlc
