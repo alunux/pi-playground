@@ -1,8 +1,8 @@
 [Plymouth Theme]
-Name=Pi Black Edition Plymouth theme
-Description=Pi Black Edition Plymounth theme
+Name=Pi
+Description=Pi Plymouth Theme
 ModuleName=script
 
 [script]
-ImageDir=/lib/plymouth/themes/pi
-ScriptFile=/lib/plymouth/themes/pi/pi.script
+ImageDir=/usr/share/plymouth/themes/pi-plymouth-theme
+ScriptFile=/usr/share/plymouth/themes/pi-plymouth-theme/theme.script

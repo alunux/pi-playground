@@ -135,6 +135,10 @@ main_process ()
     fi
     sudo cp -r pi-theme-changer/img/ /usr/share/pi-apps/pi-theme-changer/
     sudo chmod 755 -R /usr/share/pi-apps/pi-theme-changer/
+    
+    # install plymouth theme
+    sudo cp -r pi-plymouth-theme/ /usr/share/plymouth/themes/
+    sudo plymouth-set-default-theme -R pi
 }
 
 after ()
