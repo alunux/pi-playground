@@ -93,8 +93,8 @@ main_process ()
     # there are some bugs in our lightdm-webkit-theme, so we disable it
     # sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf
     echo -e "[SeatDefaults]" \
-			"\ngreeter-session=lightdm-webkit-greeter" \
-			"\nuser-session=pi" | sudo tee /etc/lightdm/lightdm.conf
+            "\ngreeter-session=lightdm-webkit-greeter" \
+            "\nuser-session=pi" | sudo tee /etc/lightdm/lightdm.conf
 
     # install logos
     sudo cp pi-logos/logo-2.png /usr/share/pixmaps
@@ -140,16 +140,16 @@ main_process ()
     sudo cp -r pi-plymouth-theme/ /usr/share/plymouth/themes/
     sudo cp pi-plymouth-theme/pi.plymouth /usr/share/plymouth/themes/default.plymouth
     echo -e "[Plymouth Theme]" \
-			"\nName=Pi Text" \
-			"\nDescription=Text mode theme based on xubuntu-logo theme" \
-			"\nModuleName=ubuntu-text" \
-			"\n" \
-			"\n[ubuntu-text]" \
-			"\ntitle=Pi 16.04" \
-			"\nblack=0x000000" \
-			"\nwhite=0xffffff" \
-			"\nbrown=0x000000" \
-			"\nblue=0xffffff" | sudo tee /usr/share/plymouth/themes/text.plymouth
+            "\nName=Pi Text" \
+            "\nDescription=Text mode theme based on xubuntu-logo theme" \
+            "\nModuleName=ubuntu-text" \
+            "\n" \
+            "\n[ubuntu-text]" \
+            "\ntitle=Pi 16.04" \
+            "\nblack=0x000000" \
+            "\nwhite=0xffffff" \
+            "\nbrown=0x000000" \
+            "\nblue=0xffffff" | sudo tee /usr/share/plymouth/themes/text.plymouth
 }
 
 after ()
