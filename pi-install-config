@@ -138,7 +138,18 @@ main_process ()
     
     # install plymouth theme
     sudo cp -r pi-plymouth-theme/ /usr/share/plymouth/themes/
-    sudo plymouth-set-default-theme -R pi
+    sudo cp pi-plymouth-theme/pi.plymouth /usr/share/plymouth/themes/default.plymouth
+    echo -e "[Plymouth Theme]" \
+			"\nName=Pi Text" \
+			"\nDescription=Text mode theme based on xubuntu-logo theme" \
+			"\nModuleName=ubuntu-text" \
+			"\n" \
+			"\n[ubuntu-text]" \
+			"\ntitle=Pi 16.04" \
+			"\nblack=0x000000" \
+			"\nwhite=0xffffff" \
+			"\nbrown=0x000000" \
+			"\nblue=0xffffff" | sudo tee /usr/share/plymouth/themes/text.plymouth
 }
 
 after ()
