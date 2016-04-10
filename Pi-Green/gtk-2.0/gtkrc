@@ -307,6 +307,38 @@ style "murrine-vscrollbar" = "murrine-scrollbar" { }
 
 # Menus
 
+style "menu"
+{
+	ythickness        = 3
+	xthickness        = 0
+	GtkMenuBar	:: shadow-type		= GTK_SHADOW_NONE
+
+	bg[SELECTED]      = @selected_bg_color
+	bg[NORMAL]        = shade (1.18, @bg_color)
+	bg[PRELIGHT]      = @selected_bg_color
+	bg[ACTIVE]        = shade (1.18, @bg_color)
+	bg[INSENSITIVE]   = shade (1.18, @bg_color)
+	fg[NORMAL]        = @fg_color # Color for normal text.
+	fg[PRELIGHT]      = @base_color
+	fg[SELECTED]      = @base_color
+	fg[ACTIVE]        = @fg_color
+	fg[INSENSITIVE]   = mix (0.4, @fg_color, @bg_color) # Text color for non-interactive menu items
+	text[NORMAL]      = @text_color # Color for menu-item radio/checks.
+	base[NORMAL]      = @bg_color # Color for menu-item radio/checks background.
+	text[PRELIGHT]    = @base_color
+	text[SELECTED]    = @base_color
+	text[ACTIVE]      = @fg_color
+	text[INSENSITIVE] = mix (0.4, @fg_color, @bg_color)
+
+	engine "murrine"
+	{
+		roundness = 0 # Roundness of menu items.
+		gradient_shades = {1.25,1.1,1.1,1.0}
+		contrast = 0.9
+		lightborder_shade = 1.5
+	}
+}
+
 style "murrine-menu" = "murrine-thin" {
 	bg[NORMAL] = @menu_bg_color
 	bg[PRELIGHT] = @selected_bg_color
@@ -657,7 +689,7 @@ widget_class "*<GtkProgressBar>" style "murrine-progressbar"
 widget_class "*<GtkComboBoxEntry>*" style "murrine-comboboxentry"
 widget_class "*<GtkCombo>*" style "murrine-comboboxentry"
 
-widget_class "*<GtkMenu>*" style "murrine-menu"
+widget_class "*<GtkMenu>*" style "menu"
 widget_class "*<GtkMenuItem>*" style "murrine-menu-item"
 widget_class "*<GtkSeparatorMenuItem>*" style "murrine-separator-menu-item"
 widget_class "*Menu*.*Sepa*"  style "murrine-separator-menu-item"
