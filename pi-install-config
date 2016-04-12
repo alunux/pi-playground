@@ -14,12 +14,12 @@ prepare_source ()
     sudo cp pi-apt-lists/sources.list /etc/apt/sources.list
 
     # add additional repos for Pi
-    sudo cp pi-apt-lists/elementary-os-ubuntu-daily-xenial.list /etc/apt/sources.list.d/
+    sudo cp pi-apt-lists/saiarcot895-ubuntu-myppa-xenial.list /etc/apt/sources.list.d/
     sudo cp pi-apt-lists/libreoffice-ubuntu-ppa-xenial.list /etc/apt/sources.list.d/
 
     # add gpg key for additional repos
     sudo cp pi-apt-lists/gpg/libreoffice_ubuntu_ppa.gpg /etc/apt/trusted.gpg.d/
-    sudo cp pi-apt-lists/gpg/elementary-os_ubuntu_daily.gpg /etc/apt/trusted.gpg.d/
+    sudo cp pi-apt-lists/gpg/saiarcot895_ubuntu_myppa.gpg /etc/apt/trusted.gpg.d/
 }
 
 # download and enter config location
