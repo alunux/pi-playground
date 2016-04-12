@@ -72,6 +72,8 @@ main_process ()
     # install Pi session
     sudo cp /usr/share/xsessions/xubuntu.desktop /usr/share/xsessions/pi.desktop
     sudo sed -i "s~\(Name=\).*~\1$session~g" /usr/share/xsessions/pi.desktop
+    sudo rm /usr/share/xsessions/xfce.desktop
+    sudo rm /usr/share/xsessions/xubuntu.desktop
 
     # install lightdm themes
     sudo cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
@@ -92,9 +94,11 @@ main_process ()
             "\nkeyboard=onboard" | sudo tee /etc/lightdm/lightdm-gtk-greeter.conf
     # there are some bugs in our lightdm-webkit-theme, so we disable it
     # sudo sed -i "s~\(greeter-session=\).*~\1$greeter~g" /etc/lightdm/lightdm.conf
-    echo -e "[Seat:*]" \
-            "\ngreeter-session=lightdm-webkit-greeter" \
-            "\nuser-session=pi" | sudo tee /etc/lightdm/lightdm.conf
+    #echo -e "[Seat:*]" \
+    #        "\ngreeter-session=lightdm-webkit-greeter" \
+    #        "\nuser-session=pi" | sudo tee /etc/lightdm/lightdm.conf
+    sudo rm /usr/share/lightdm/lightdm.conf.d/60-lightdm-gtk-greeter.conf
+    sudo rm /usr/share/lightdm/lightdm.conf.d/60-xubuntu.conf
 
     # install logos
     sudo cp pi-logos/logo-2.png /usr/share/pixmaps
@@ -160,6 +164,7 @@ after ()
 {
     sudo apt-get purge apport -y
     sudo apt-get autoremove --purge -y
+    sudo apt-fast install -f -y
     sudo rm -rf $lokasi_config
     cd $HOME
     sudo update-grub
