@@ -72,8 +72,6 @@ main_process ()
     # install Pi session
     sudo cp /usr/share/xsessions/xubuntu.desktop /usr/share/xsessions/pi.desktop
     sudo sed -i "s~\(Name=\).*~\1$session~g" /usr/share/xsessions/pi.desktop
-    sudo rm /usr/share/xsessions/xfce.desktop
-    sudo rm /usr/share/xsessions/xubuntu.desktop
 
     # install lightdm themes
     sudo cp -r pi-lightdm-theme/ /usr/share/lightdm-webkit/themes/
