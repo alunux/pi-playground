@@ -40,12 +40,13 @@ dependencies ()
     prepare_source
     packages=$(cat package_list)
     packages_rm=$(cat package_remove)
+    packages_plus=$(cat package_64)
     sudo apt-get update -y
     sudo apt-get install apt-fast -y
     sudo apt-get purge $packages_rm -y
     sudo apt-fast install $packages -y
     if [[ "$arch" == "x86_64" ]]; then
-        sudo apt-fast install grub-efi-amd64-signed shim-signed sbsigntool openssl grub-efi fwts linux-signed-generic efilinux-signed -y
+        sudo apt-fast install $packages_plus -y
     fi
     sudo apt-fast upgrade -y
     sudo apt-fast dist-upgrade -y
