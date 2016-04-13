@@ -14,5 +14,4 @@ mokutil
 openssl
 sbsigntool
 secureboot-db
-shim
-shim-signed
+
