@@ -2,7 +2,7 @@
 
 ./pi-install-config
 cd /temp/
-wget http://tenet.dl.sourceforge.net/project/pinguy-os/ISO_Builder/pinguybuilder_4.3-8_all-beta.deb
+wget 'http://downloads.sourceforge.net/project/pinguy-os/ISO_Builder/pinguybuilder_4.3-8_all-beta.deb'
 sudo dpkg -i pinguybuilder_4.3-8_all-beta.deb
 cd
 sudo apt-fast install -f -y
