@@ -120,6 +120,7 @@ main_process ()
     # install xdg config
     sudo rm -rf /etc/xdg/*
     rm -rf $HOME/.config/xfce4/
+    
     sudo cp -r pi-xdg/* /etc/xdg/
     sudo chmod 755 -R /etc/xdg/
     cp pi-xdg/Thunar/uca.xml $HOME/.config/Thunar/uca.xml
@@ -135,6 +136,8 @@ main_process ()
     else
         sudo cp pi-theme-changer/bin/pi-theme-changer /usr/share/pi-apps/pi-theme-changer/
         sudo cp pi-theme-changer/pi-theme-changer.desktop /usr/share/applications/
+        sudo sed -i 's/pi-theme-changer64/pi-theme-changer/g' pi-xdg/xdg-xubuntu/xfce4/panel/whiskermenu-1.rc
+        sudo sed -i 's/pi-theme-changer64/pi-theme-changer/g' pi-xdg/xfce4/panel/whiskermenu-1.rc
     fi
     sudo cp -r pi-theme-changer/img/ /usr/share/pi-apps/pi-theme-changer/
     sudo chmod 755 -R /usr/share/pi-apps/pi-theme-changer/
@@ -155,8 +158,8 @@ main_process ()
             "\nblue=0xffffff" | sudo tee /usr/share/plymouth/themes/text.plymouth
             
     # install libreoffice config
-    rm -rf $HOME/.config/libreoffice
-    sudo cp -r pi-libreoffice-config/ $HOME/.config/libreoffice
+    sudo cp -r pi-libreoffice-config/ /etc/skel/.config/libreoffice
+    rm -rf $HOME/.config/xfce4/
 }
 
 after ()
