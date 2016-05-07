@@ -7,7 +7,7 @@ NemoPathbarButton {
     background-image: none;
     color: @toolbar_fg_color;
 
-    -NemoPathbarButton-border-radius: 2px;
+    -NemoPathbarButton-border-radius: 0px;
 }
 
 NemoPathbarButton:active {
@@ -33,7 +33,7 @@ NemoPlacesTreeView {
     -NemoPlacesTreeView-disk-full-bg-color: shade(@toolbar_bg_color, 0.8);
     -NemoPlacesTreeView-disk-full-fg-color: @theme_selected_bg_color;
     -NemoPlacesTreeView-disk-full-bar-width: 1px;
-    -NemoPlacesTreeView-disk-full-bar-radius: 1px;
+    -NemoPlacesTreeView-disk-full-bar-radius: 0px;
     -NemoPlacesTreeView-disk-full-bottom-padding: 2px;
     -NemoPlacesTreeView-disk-full-max-length: 70px;
 }

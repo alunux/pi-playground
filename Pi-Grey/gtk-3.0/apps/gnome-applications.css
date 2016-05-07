@@ -1,3 +1,11 @@
+/************************
+ * Email Client sidebar *
+ ************************/
+EMailSidebar.view {
+    background-color: shade(@theme_bg_color, 0.9);
+    color: @theme_fg_color;
+}
+
 /***********************
  * fallback mode panel *
  ***********************/
@@ -26,7 +34,7 @@ PanelApplet > GtkMenuBar.menubar,
 PanelApplet > GtkMenuBar.menubar.menuitem,
 PanelMenuBar.menubar,
 PanelMenuBar.menubar.menuitem {
-    -Panelpanel-icon-visible: true;
+    -PanelMenuBar-icon-visible: true;
 
     border-width: 0;
     background-color: @panel_bg_color;
@@ -55,21 +63,21 @@ PanelApplet .button:active {
     border-radius: 0;
     border-color: mix(@panel_bg_color, @panel_fg_color, 0.21);
     background-color: mix(@panel_bg_color, @panel_fg_color, 0.21);
-    background-image: none;
+    background-image: url('../panel/item-active.svg');
     color: shade(@panel_fg_color, 1.08);
 }
 
 PanelApplet .button:prelight {
     border-color: mix(@panel_bg_color, @panel_fg_color, 0.11);
     background-color: mix(@panel_bg_color, @panel_fg_color, 0.11);
-    background-image: none;
+    background-image: url('../panel/item-prelight.svg');
     color: shade(@panel_fg_color, 1.08);
 }
 
 PanelApplet .button:active:prelight {
     border-color: mix(@panel_bg_color, @panel_fg_color, 0.31);
     background-color: mix(@panel_bg_color, @panel_fg_color, 0.31);
-    background-image: none;
+    background-image: url('../panel/item-active-prelight.svg');
     color: shade(@panel_fg_color, 1.08);
 }
 
@@ -81,7 +89,7 @@ WnckPager, WnckTasklist {
  * nautilus *
  ************/
 .nautilus-canvas-item {
-    border-radius: 2px;
+    border-radius: 0px;
 }
 
 .nautilus-desktop.nautilus-canvas-item {
@@ -159,42 +167,14 @@ NautilusQueryEditor .search-bar.toolbar:only-child {
  * gnome terminal *
  ******************/
 VteTerminal {
-    background-color: @osd_base;
-    color: @osd_fg;
+    background-color: #000000;
+    color: @terminal_text_color;
 }
 
 TerminalWindow GtkNotebook.notebook {
     border-right-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-}
-
-TerminalWindow .scrollbars-junction,
-TerminalWindow .scrollbar.trough {
-    background-color: @osd_base;
-}
-
-TerminalWindow .scrollbar.button,
-TerminalWindow .scrollbar.button:active,
-TerminalWindow .scrollbar.button:active:hover {
-    color: shade(@osd_base, 0.6);
-}
-
-TerminalWindow .scrollbar.slider {
-    border-color: mix(shade(@osd_base, 0.87), @osd_fg, 0.21);
-    background-color: mix(@osd_base, @osd_fg, 0.21);
-}
-
-TerminalWindow .scrollbar.slider:hover,
-TerminalWindow .scrollbar.slider.vertical:hover {
-    border-color: mix(shade(@osd_base, 0.87), @osd_fg, 0.31);
-    background-color: mix(@osd_base, @osd_fg, 0.31);
-}
-
-TerminalWindow .scrollbar.slider:active,
-TerminalWindow .scrollbar.slider.vertical:active {
-    border-color: shade(@theme_selected_bg_color, 0.9);
-    background-color: @theme_selected_bg_color;
 }
 
 /*********
@@ -233,7 +213,7 @@ GeditWindow .pane-separator:hover {
 .gedit-document-panel .list-row .button {
     padding: 1px;
     border-image: none;
-    border-radius: 2px;
+    border-radius: 0px;
     border-style: solid;
     border-color: transparent;
     border-width: 1px;
@@ -301,7 +281,7 @@ GeditStatusMenuButton.button:active {
 
 GeditViewFrame .gedit-search-slider {
     padding: 4px;
-    border-radius: 0 0 2px 2px;
+    border-radius: 0 0 0px 0px;
     border-width: 0 1px 1px 1px;
     border-style: solid;
     border-color: shade(@theme_base_color, 0.8);
@@ -382,3 +362,28 @@ GtkEntry.entry.pin-entry {
 GtkLabel.pin-label {
 	font: regular 50;
 }
+
+/*********************
+ * Nemo File Manager *
+**********************/
+.nemo-canvas-item {
+    border-radius: 0px;
+}
+
+.nemo-desktop.nemo-canvas-item {
+    color: @desktop_item_fg;
+    text-shadow: 1px 1px @desktop_item_text_shadow;
+}
+
+.nautilus-desktop.nautilus-canvas-item:active {
+    background-color: @desktop_item_selected_fg;
+    background-image: none;
+    color: @theme_fg_color;
+}
+
+.nautilus-desktop.nautilus-canvas-item:selected {
+    background-color: alpha(@theme_selected_bg_color, 0.8);
+    background-image: none;
+    color: @theme_selected_fg_color;
+}
+

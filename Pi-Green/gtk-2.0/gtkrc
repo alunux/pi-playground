@@ -1,8 +1,23 @@
-# Pi GTK Theme based on Numix GTK Theme
+# Pi GTK Theme
 # Author: La Ode Muh. Fadlun Akbar
+#
+# Thanks to
+# name: Windows 10 Light
+# author: Christian Medel (Elbullazul)
+# date: April 7th, 2016
+# description: Windows 10 Default white color
 
-#gtk-color-scheme = "bg_color:#f6f6f6\nfg_color:#555555\nbase_color:#f9f9f9\ntext_color:#333333\nselected_bg_color:#d64937\nselected_fg_color:#f9f9f9\ntooltip_bg_color:#2d2d2d\ntooltip_fg_color:#dedede\ntitlebar_bg_color:#2d2d2d\ntitlebar_fg_color:#dcdcdc\nmenubar_bg_color:#2d2d2d\nmenubar_fg_color:#dcdcdc\ntoolbar_bg_color:#dedede\ntoolbar_fg_color:#555555\nmenu_bg_color:#2d2d2d\nmenu_fg_color:#dcdcdc\npanel_bg_color:#2d2d2d\npanel_fg_color:#dcdcdc\nlink_color:#fc6f5d"
-gtk-color-scheme = "bg_color:#f6f6f6\nfg_color:#333333\nbase_color:#ffffff\ntext_color:#333333\nselected_bg_color:#8bc34a\nselected_fg_color:#ffffff\ntooltip_bg_color:#333333\ntooltip_fg_color:#eeeeee\ntitlebar_bg_color:#f6f6f6\ntitlebar_fg_color:#333333\nmenubar_bg_color:#7cb342\nmenubar_fg_color:#FFFFFF\ntoolbar_bg_color:#f6f6f6\ntoolbar_fg_color:#333333\nmenu_bg_color:#ffffff\nmenu_fg_color:#333333\npanel_bg_color:#7cb342\npanel_fg_color:#000000\nlink_color:#f06860\nwarna_teks:#ffffff\nwarna_cek:#DEDEDE\npanel_aktif:#f6f6f6\npanel_hover:#242424"
+gtk-color-scheme = "bg_color:#fafafa\nfg_color:#4c4c4c\nbase_color:#fafafa"
+gtk-color-scheme = "text_color:#4c4c4c\nselected_bg_color:#71AD3D"
+gtk-color-scheme = "selected_fg_color:#fafafa\ntooltip_bg_color:#ffffff"
+gtk-color-scheme = "tooltip_fg_color:#4c4c4c\ntitlebar_bg_color:#fafafa"
+gtk-color-scheme = "titlebar_fg_color:#4c4c4c\nmenubar_bg_color:#71AD3D"
+gtk-color-scheme = "menubar_fg_color:#fafafa\ntoolbar_bg_color:#fafafa"
+gtk-color-scheme = "toolbar_fg_color:#4c4c4c\nmenu_bg_color:#ffffff"
+gtk-color-scheme = "menu_fg_color:#4c4c4c\npanel_bg_color:#71AD3D"
+gtk-color-scheme = "panel_fg_color:#ffffff\nlink_color:#224ba0\n"
+gtk-color-scheme = "bg_color_dark:#000000\nfg_color_dark:#b7b7b7"
+
 # Default Style
 
 style "murrine-default" {
@@ -15,7 +30,7 @@ style "murrine-default" {
 
 	GtkButtonBox::child-min-height = 26
 
-	GtkCheckButton::indicator-size = 16
+	GtkCheckButton::indicator-size = 14
 
 	# The following line hints to gecko (and possibly other appliations)
 	# that the entry should be drawn transparently on the canvas.
@@ -37,8 +52,8 @@ style "murrine-default" {
 
 	GtkPaned::handle-size = 1
 
-	GtkProgressBar::min-horizontal-bar-height = 12
-	GtkProgressBar::min-vertical-bar-width = 12
+	#GtkProgressBar::min-horizontal-bar-height = 12
+	#GtkProgressBar::min-vertical-bar-width = 12
 
 	GtkRange::trough-border = 0
 	GtkRange::slider-width = 12
@@ -46,17 +61,17 @@ style "murrine-default" {
 	GtkRange::stepper_spacing = 0
 	GtkRange::trough-under-steppers = 1
 
-	GtkScale::slider-length = 16
+	GtkScale::slider-length = 7
 	GtkScale::slider-width = 16
 	GtkScale::trough-side-details = 1
 
 	GtkScrollbar::activate-slider = 1
-	GtkScrollbar::has-backward-stepper = 0
-	GtkScrollbar::has-forward-stepper = 0
+	GtkScrollbar::has-backward-stepper = 1
+	GtkScrollbar::has-forward-stepper = 1
 	GtkScrollbar::has-secondary-backward-stepper = 0
 	GtkScrollbar::has-secondary-forward-stepper = 0
 	GtkScrollbar::min-slider-length = 80
-	GtkScrollbar::slider-width = 7
+	GtkScrollbar::slider-width = 9
 	GtkScrollbar::trough-border = 0
 
 	GtkScrolledWindow::scrollbar-spacing = 0
@@ -104,7 +119,7 @@ style "murrine-default" {
 
 	bg[NORMAL] = @bg_color
 	bg[PRELIGHT] = shade (1.02, @bg_color)
-	bg[SELECTED] = @selected_bg_color
+	bg[SELECTED] = shade (0.6, @selected_bg_color)
 	bg[ACTIVE] = shade (0.9, @bg_color)
 	bg[INSENSITIVE] = @bg_color
 
@@ -122,11 +137,12 @@ style "murrine-default" {
 
 	engine "murrine" {
 		animation = FALSE
-		arrowstyle = 1 # 0 = normal arrows, 1 = filled arrows
+		arrowstyle = 0 # 0 = normal arrows, 1 = filled arrows
 		border_shades = { 1.0, 1.0 } # gradient to draw on border
 		colorize_scrollbar = FALSE
 		comboboxstyle = 0 # 0 = normal combobox, 1 = colorized combobox below arrow
 		contrast = 0.8 # overal contrast with borders
+		default_button_color = @selected_bg_color
 		focusstyle = 1 # 0 = none, 1 = grey dotted, 2 = colored with fill, 3 = colored glow
 		glazestyle = 0 # 0 = flat highlight, 1 = curved highlight, 2 = concave, 3 = top curved highlight, 4 = beryl highlight
 		glowstyle = 0 # 0 = glow on top, 1 = glow on bottom, 2 = glow on top and bottom, 3 = glow on middle vertically, 4 = glow on middle horizontally, 5 = glow on all sides
@@ -143,7 +159,7 @@ style "murrine-default" {
 		menustyle = 0 # 0 = none, 1 = vertical striped
 		progressbarstyle = 0 # 0 = none, 1 = diagonal striped, 2 = vertical striped
 		reliefstyle = 0 # 0 = flat, 1 = inset, 2 = shadow, 3 = shadow with gradient, 4 = stronger shadow with gradient
-		roundness = 2 # roundness of widgets
+		roundness = 0 # roundness of widgets
 		scrollbarstyle = 0 # 0 = none, 1 = circles, 2 = handles, 3 = diagonal stripes, 4 = diagonal stripes and handles, 5 = horizontal stripes, 6 = horizontal stripes and handles
 		sliderstyle = 0 # 0 = none, 1 = handles
 		stepperstyle = 1 # 0 = standard, 1 = integrated stepper handles
@@ -178,7 +194,7 @@ style "murrine-notebook" = "murrine-notebook-bg" {
 	ythickness = 2
 
 	engine "murrine" {
-		roundness = 2
+		roundness = 0
 	}
 }
 
@@ -195,15 +211,15 @@ style "murrine-button"  = "murrine-wider" {
 }
 
 style "murrine-scrollbar" {
-	bg[NORMAL] = mix (0.21, @fg_color, @bg_color)
-	bg[PRELIGHT] = mix (0.31, @fg_color, @bg_color)
-	bg[ACTIVE] = @selected_bg_color
+	bg[NORMAL] = mix (0.32, @fg_color, @bg_color)
+	bg[PRELIGHT] = mix (0.27, @fg_color, @bg_color)
+	bg[ACTIVE] = shade(0.5, @bg_color)
 
 	engine "murrine" {
 		roundness = 0
 		contrast = 0.0
-		border_shades = { 0.9, 0.9 }
-		trough_shades = { 0.97, 0.97 }
+		border_shades = { 1.0, 1.0 }
+		trough_shades = { 0.96, 0.96 }
 		trough_border_shades = { 1.0, 1.0 }
 	}
 }
@@ -212,8 +228,8 @@ style "murrine-overlay-scrollbar" {
 	bg[ACTIVE] = shade (0.8, @bg_color)
 	bg[INSENSITIVE] = shade (0.97, @bg_color)
 
-	base[SELECTED] = shade (0.6, @base_color)
-	base[INSENSITIVE] = shade (0.85, @base_color)
+	base[SELECTED] = shade (0.8, @base_color)
+	base[INSENSITIVE] = shade (0.97, @base_color)
 }
 
 style "murrine-scale" = "murrine-thin" {
@@ -223,7 +239,7 @@ style "murrine-scale" = "murrine-thin" {
 	bg[INSENSITIVE] = shade (0.95, @bg_color)
 
 	engine "murrine" {
-		roundness = 8
+		roundness = 0
 		gradient_shades = { 1.08, 1.08, 1.08, 1.08 }
 		border_shades = { 1.0, 1.0 }
 		trough_shades = { 1.08, 1.08 }
@@ -231,18 +247,52 @@ style "murrine-scale" = "murrine-thin" {
 	}
 }
 
-style "murrine-progressbar" = "murrine-thin" {
-	bg[NORMAL] = @bg_color
-	bg[ACTIVE] = shade (1.08, @bg_color)
+style "progressbar"
+{
+  xthickness            		= 1
+  ythickness            		= 1
 
-	fg[PRELIGHT] = @selected_fg_color
-
-	engine "murrine" {
-		roundness = 2
-		border_shades = { 1.2, 1.2 }
-		trough_border_shades = { 0.8, 0.8 }
-	}
+  engine "pixmap" 
+  {
+    image
+    {
+      function				= BOX
+      detail				= "trough"
+      file				= "ProgressBar/trough-progressbar.png"
+      border				= { 4, 4, 4, 4 }
+      stretch				= TRUE
+      orientation			= HORIZONTAL
+    }
+    image
+    {
+      function				= BOX
+      detail				= "bar"
+      file				= "ProgressBar/progressbar.png"
+      stretch				= TRUE
+      border				= { 3, 3, 3, 3 }
+      orientation			= HORIZONTAL
+    }
+    image
+    {
+      function				= BOX
+      detail				= "trough"
+      file				= "ProgressBar/trough-progressbar_v.png"
+      border				= { 4, 4, 4, 4 }
+      stretch				= TRUE
+      orientation			= VERTICAL
+    }
+    image
+    {
+      function				= BOX
+      detail				= "bar"
+      file				= "ProgressBar/progressbar_v.png"
+      stretch				= TRUE
+      border				= { 3, 3, 3, 3 }
+      orientation			= VERTICAL
+    }
+  }
 }
+
 
 style "murrine-treeview-header" = "murrine-button" {
   	engine "murrine" {
@@ -271,7 +321,7 @@ style "murrine-tooltips" {
 
 	engine "murrine" {
 		textstyle = 0
-		roundness = 2
+		roundness = 0
 		rgba = FALSE
 	}
 }
@@ -284,8 +334,13 @@ style "murrine-spinbutton" = "murrine-button" {
 style "murrine-radiocheck" = "murrine-default" {
 	bg[SELECTED] = @base_color
 
-	text[NORMAL] = @selected_bg_color
-	text[PRELIGHT] = @selected_bg_color
+	text[NORMAL] = @text_color
+	text[PRELIGHT] = shade (0.8, @selected_bg_color)
+
+	  	engine "murrine" {
+		contrast		= 1.0
+		lightborder_shade	= 1.0
+	}
 }
 
 style "murrine-entry" = "murrine-wider" {
@@ -313,17 +368,24 @@ style "menu"
 	xthickness        = 0
 	GtkMenuBar	:: shadow-type		= GTK_SHADOW_NONE
 
-	bg[SELECTED]      = @selected_bg_color
-	bg[NORMAL]        = shade (1.18, @bg_color)
-	bg[PRELIGHT]      = @selected_bg_color
-	bg[ACTIVE]        = shade (1.18, @bg_color)
-	bg[INSENSITIVE]   = shade (1.18, @bg_color)
-	fg[NORMAL]        = @fg_color # Color for normal text.
-	fg[PRELIGHT]      = @base_color
-	fg[SELECTED]      = @base_color
-	fg[ACTIVE]        = @fg_color
-	fg[INSENSITIVE]   = mix (0.4, @fg_color, @bg_color) # Text color for non-interactive menu items
-	text[NORMAL]      = @text_color # Color for menu-item radio/checks.
+	bg[NORMAL] = @menu_bg_color
+	bg[PRELIGHT] = @selected_bg_color
+	bg[SELECTED] = @selected_bg_color
+	bg[ACTIVE] = @menu_bg_color
+	bg[INSENSITIVE] = @menu_bg_color
+
+	fg[NORMAL] = @menu_fg_color
+	fg[PRELIGHT] = @selected_fg_color
+	fg[SELECTED] = @selected_fg_color
+	fg[ACTIVE] = @selected_fg_color
+	fg[INSENSITIVE] = mix (0.5, @menu_bg_color, @menu_fg_color)
+
+	text[NORMAL] = @menu_fg_color
+	text[PRELIGHT] = @selected_fg_color
+	text[SELECTED] = @selected_fg_color
+	text[ACTIVE] = @selected_fg_color
+	text[INSENSITIVE] = mix (0.5, @menu_bg_color, @menu_fg_color)
+	
 	base[NORMAL]      = @bg_color # Color for menu-item radio/checks background.
 	text[PRELIGHT]    = @base_color
 	text[SELECTED]    = @base_color
@@ -333,7 +395,6 @@ style "menu"
 	engine "murrine"
 	{
 		roundness = 0 # Roundness of menu items.
-		gradient_shades = {1.25,1.1,1.1,1.0}
 		contrast = 0.9
 		lightborder_shade = 1.5
 	}
@@ -464,14 +525,14 @@ style "murrine-panel" = "murrine-thin" {
 	xthickness = 2
 
 	bg[NORMAL] = @panel_bg_color
-	bg[PRELIGHT] =  @panel_hover
-	bg[SELECTED] =  @panel_hover
-	bg[ACTIVE] = @panel_aktif
+	bg[PRELIGHT] =  mix (0.21, @panel_fg_color, @panel_bg_color)
+	bg[SELECTED] =  mix (0.21, @panel_fg_color, @panel_bg_color)
+	bg[ACTIVE] = shade (0.8, @panel_bg_color)
 	bg[INSENSITIVE] = @panel_bg_color
 
-	fg[NORMAL] = @warna_teks
-	fg[PRELIGHT] = @warna_teks
-	fg[SELECTED] = @warna_teks
+	fg[NORMAL] = @panel_fg_color
+	fg[PRELIGHT] = shade (1.08, @panel_fg_color)
+	fg[SELECTED] = shade (1.08, @panel_fg_color)
 	fg[ACTIVE] = @panel_fg_color
 	fg[INSENSITIVE] = mix (0.5, @panel_bg_color, @panel_fg_color)
 
@@ -623,7 +684,7 @@ widget_class "*GtkFileChooserWidget.GtkFileChooserDefault.GtkVBox.GtkHPaned.GtkV
 
 style "chromium-toolbar-button" {
 	engine "murrine" {
-		roundness = 2
+		roundness = 0
 		textstyle = 0
 	}
 }
@@ -683,14 +744,14 @@ widget_class "*.GtkNotebook.*.GtkViewport" style "murrine-notebook"
 
 widget_class "*<GtkButton>" style "murrine-button"
 widget_class "*<GtkStatusbar>*" style "murrine-statusbar"
-widget_class "*<GtkProgress>" style "murrine-progressbar"
-widget_class "*<GtkProgressBar>" style "murrine-progressbar"
+widget_class "*<GtkProgress>" style "progressbar"
+widget_class "*<GtkProgressBar>" style "progressbar"
 
 widget_class "*<GtkComboBoxEntry>*" style "murrine-comboboxentry"
 widget_class "*<GtkCombo>*" style "murrine-comboboxentry"
 
-widget_class "*<GtkMenu>*" style "menu"
-widget_class "*<GtkMenuItem>*" style "murrine-menu-item"
+widget_class "*<GtkMenu>*" style "murrine-menu"
+widget_class "*<GtkMenuItem>*" style "menu"
 widget_class "*<GtkSeparatorMenuItem>*" style "murrine-separator-menu-item"
 widget_class "*Menu*.*Sepa*"  style "murrine-separator-menu-item"
 widget_class "*<GtkMenuBar>*" style "murrine-menubar"
@@ -794,3 +855,5 @@ widget_class "*XfdesktopIconView*" style "xfdesktop-icon-view"
 widget "xfwm4-tabwin*" style "xfwm-tabwin"
 widget_class "*XfsmLogoutDialog*" style "xfsm-logout"
 widget_class "*XfsmLogoutDialog*GtkButton" style "xfsm-logout-button"
+
+include "Apps/pi-panel.rc"

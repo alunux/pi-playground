@@ -1,16 +1,21 @@
+/*# name: Windows 10 Light
+  # author: Christian Medel (Elbullazul)
+  # date: April 7th, 2016
+  # description: Windows 10 Default White color*/
+
 /* default color scheme */
-@define-color bg_color #dedede;
-@define-color fg_color #555555;
-@define-color base_color #f9f9f9;
-@define-color text_color #333333;
-@define-color selected_bg_color #7CB342;
-@define-color selected_fg_color #FFFFFF;
-@define-color tooltip_bg_color #7CB342;
-@define-color tooltip_fg_color #dcdcdc;
+@define-color bg_color #fafafa;
+@define-color fg_color #4c4c4c;
+@define-color base_color #fafafa;
+@define-color text_color #4c4c4c;
+@define-color selected_bg_color #8BC34A;
+@define-color selected_fg_color #fafafa;
+@define-color tooltip_bg_color #fafafa;
+@define-color tooltip_fg_color #4c4c4c;
 
 /* dark color scheme */
-@define-color dark_bg_color #FFFFFF;
-@define-color dark_fg_color #000000;
+@define-color dark_bg_color #71AD3D;
+@define-color dark_fg_color #fafafa;
 
 /* colormap actually used by the theme, to be overridden in other css files */
 @define-color theme_bg_color @bg_color;
@@ -22,33 +27,38 @@
 @define-color theme_tooltip_bg_color @tooltip_bg_color;
 @define-color theme_tooltip_fg_color @tooltip_fg_color;
 
+/*Nemo Desktop shadow fix*/
+ @define-color desktop_item_fg #fafafa;
+ @define-color desktop_item_selected_fg shade(@theme_selected_fg_color, 0.8);
+ @define-color desktop_item_text_shadow alpha(black, 0.8);
+
 /* shadow effects */
 @define-color light_shadow #fff;
 @define-color dark_shadow #000;
 
 /* misc colors used by gtk+ */
-@define-color info_fg_color rgb (58, 135, 173);
+@define-color info_fg_color rgb (40, 40, 40);
 @define-color info_bg_color rgb (217, 237, 247);
-@define-color warning_fg_color rgb (192, 152, 83);
-@define-color warning_bg_color rgb (252, 248, 227);
-@define-color question_fg_color rgb (214, 73, 55);
-@define-color question_bg_color rgb (252, 229, 213);
-@define-color error_fg_color rgb (185, 74, 72);
-@define-color error_bg_color rgb (242, 222, 222);
-@define-color link_color #fc6f5d;
-@define-color success_color #53a93f;
-@define-color warning_color #f57900;
-@define-color error_color #cc0000;
+@define-color warning_fg_color rgb (77, 77, 77);
+@define-color warning_bg_color rgb (222, 109, 38);
+@define-color question_fg_color rgb (255, 255, 255);
+@define-color question_bg_color rgb (255, 156, 25);
+@define-color error_fg_color rgb (255, 255, 255);
+@define-color error_bg_color rgb (255, 25, 25);
+@define-color link_color #224ba0;
+@define-color success_color #8BC34A;
+@define-color warning_color #f57600;
+@define-color error_color #F0544C;
 
 /* widget colors */
 @define-color titlebar_bg_color @dark_bg_color;
 @define-color titlebar_fg_color @dark_fg_color;
-@define-color menubar_bg_color #7CB342;
-@define-color menubar_fg_color #FFFFFF;
-@define-color toolbar_bg_color @theme_bg_color;
-@define-color toolbar_fg_color @theme_fg_color;
-@define-color menu_bg_color @dark_bg_color;
-@define-color menu_fg_color @dark_fg_color;
+@define-color menubar_bg_color @dark_bg_color;
+@define-color menubar_fg_color @dark_fg_color;
+@define-color toolbar_bg_color @theme_bg_color; /*@dark_bg_color; *@theme_bg_color;*/
+@define-color toolbar_fg_color @dark_fg_color; /*@theme_fg_color;*/
+@define-color menu_bg_color @bg_color;
+@define-color menu_fg_color @fg_color;
 @define-color panel_bg_color @dark_bg_color;
 @define-color panel_fg_color @dark_fg_color;
 
@@ -73,6 +83,12 @@
 @define-color wm_icons_unfocused mix(@titlebar_fg_color, @titlebar_bg_color, 0.4);
 @define-color wm_icons_unfocused_prelight @selected_bg_color;
 @define-color wm_icons_unfocused_pressed shade(@selected_bg_color, 0.8);
+
+/*Terminal Text color*/
+@define-color terminal_text_color @bg_color;
+
+/*Progressbar bg color*/
+@define-color progressbar_color #71AD3D;
 
 @import url("gtk-widgets.css");
 @import url("gtk-widgets-assets.css");

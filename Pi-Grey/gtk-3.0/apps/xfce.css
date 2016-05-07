@@ -1,7 +1,8 @@
+
 PanelWidget, PanelApplet, PanelToplevel, PanelSeparator, PanelApplet > GtkMenuBar.menubar.menuitem, PanelMenuBar.menubar.menuitem, .gnome-panel-menu-bar.menuitem, PanelAppletFrame, WnckPager, WnckTasklist, .xfce4-panel, UnityPanelWidget, .unity-panel {
-  background-color: #444;
-  background-image: none;
-  color: #eee; }
+  
+  background-image: panel/panel-blue.png;
+   }
 
 PanelApplet .button, .xfce4-panel .button {
   border-width: 0 1px;
@@ -11,18 +12,18 @@ PanelApplet .button, .xfce4-panel .button {
   background-image: none;
   color: #eee; }
   PanelApplet .button:hover, .xfce4-panel .button:hover, PanelApplet .button:prelight, .xfce4-panel .button:prelight {
-    background-color: #242424;
-    background-image: none;
+    
+    background-image: panel/panel-blue.png
     border-color: none;
     color: white; }
   PanelApplet .button:active, .xfce4-panel .button:active, PanelApplet .button:checked, .xfce4-panel .button:checked {
-    background-color: #242424;
-    background-image: none;
+    
+    background-image: panel/panel-blue.png
     border-color: none;
     color: white; }
     PanelApplet .button:active:prelight, .xfce4-panel .button:active:prelight, PanelApplet .button:checked:prelight, .xfce4-panel .button:checked:prelight {
-      background-color: #242424;
-      background-image: none;
+      
+      background-image: panel/panel-blue.png
       border-color: none; }
 
 PanelWidget, PanelApplet, PanelToplevel {
@@ -47,8 +48,8 @@ XfceHeading {
   margin: 0;
   padding: 0;
   border: 0;
-  background-image: none;
-  background-color: #fff;
+  background-image: panel/panel-blue.png;
+  
   color: #333; }
 
 .xfce4-panel {
